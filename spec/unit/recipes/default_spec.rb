@@ -19,7 +19,7 @@ describe 'mongo::default' do
       expect { chef_run }.to_not raise_error
     end
     it 'installs mongo from a recipe' do
-      expect(chef_run).to include_recipe "mongodb"
+      expect(chef_run).to install_package "mongodb"
     end
 
     it "should be enabled" do

@@ -3,8 +3,13 @@
 # Recipe:: default
 #
 # Copyright:: 2019, The Authors, All Rights Reserved.
-node.default['mongodb']['package version'] = '3.4'
-include_recipe "mongodb::default"
+package "mongodb" do
+  action [ :install ]
+end
+
+service "mongodb" do
+  action [ :enable, :start]
+end
 
 # service "mongodb" do
 #   action [ :enable]

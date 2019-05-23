@@ -19,4 +19,7 @@ chef_version '>= 13.0'
 #
 # source_url 'https://github.com/<insert_org_here>/mongo'
 depends 'apt'
-depends 'mongodb', '~> 0.16.2'
+# depends 'python'
+# depends 'runit'
+# depends 'yum'
+# depends 'sc-mongodb', '~> 1.2.0'
