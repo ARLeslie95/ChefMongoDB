@@ -18,12 +18,19 @@ describe 'mongo::default' do
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
     end
-    it 'installs mongo from a recipe' do
-      expect(chef_run).to install_package "mongodb"
+    it 'updates all sources' do
+      expect(chef_run).to update_apt_update 'update'
     end
 
-    it "should be enabled" do
-      expect(chef_run).to enable_service "mongodb"
+    it "should add mongo to the sources list" do
+      expect(chef_run).to add_apt_repository 'mongodb-org'
+    end
+
+    it 'should install mongod' do
+      expect(chef_run).to install_package 'mongodb-org'
+    end
+    it 'should upgrade mongod' do
+      expect(chef_run).to upgrade_package 'mongodb-org'
     end
   end
 

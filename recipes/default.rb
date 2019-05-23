@@ -3,14 +3,30 @@
 # Recipe:: default
 #
 # Copyright:: 2019, The Authors, All Rights Reserved.
-package "mongodb" do
-  action [ :install ]
-end
-
-service "mongodb" do
-  action [ :enable, :start]
-end
-
+# package "mongodb" do
+#   action [ :install ]
+# end
+#
 # service "mongodb" do
-#   action [ :enable]
+#   action [ :enable, :start]
+# end
+
+apt_update 'update' do
+  action [ :update ]
+end
+
+apt_repository 'mongodb-org' do
+  uri "http://repo.mongodb.org/apt/ubuntu"
+  distribution "xenial/mongodb-org/3.2"
+  components ["multiverse"]
+  keyserver "hkp://keyserver.ubuntu.com:80"
+  key "EA312927"
+end
+
+package 'mongodb-org' do
+  action [:install, :upgrade]
+end
+#
+# service 'mongodb-org' do
+#   action [:enable, :start]
 # end
